@@ -1,5 +1,6 @@
 package org.example.homeowork003.model.dto;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,8 +8,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Venue {
-    private Integer venueId;
-    private String venueName;
-    private String venueAddress;
+public class Attendee {
+    private int attendeeId;
+    private String attendeeName;
+    private String email;
 }
