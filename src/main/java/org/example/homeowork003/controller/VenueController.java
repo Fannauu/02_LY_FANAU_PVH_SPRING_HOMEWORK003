@@ -11,6 +11,7 @@ import org.example.homeowork003.service.VenueService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -22,20 +23,20 @@ public class VenueController {
 
 
     @GetMapping
-    public ResponseEntity<ApiResponse<List<Venue>>> getAllVenues(@Positive @NotNull @RequestParam(required = false) Integer size, @Positive @NotNull @RequestParam(required = false)Integer page ){
+    public ResponseEntity<ApiResponse<List<Venue>>> getAllVenues(@Positive @NotNull @RequestParam(required = false) Integer size, @Positive @NotNull @RequestParam(required = false) Integer page) {
         return ResponseEntity.status(HttpStatus.OK).body(
                 ApiResponse.<List<Venue>>builder()
                         .success(true)
                         .message("Get All Students successfully")
                         .status(HttpStatus.OK)
-                        .payload(venueService.getAllVenues(size,page))
+                        .payload(venueService.getAllVenues(size, page))
                         .timestamp(LocalDateTime.now())
                         .build()
         );
     }
 
     @PostMapping
-    public ResponseEntity<ApiResponse<Venue>> addVenue(@Valid @RequestBody VenueRequest venueRequest){
+    public ResponseEntity<ApiResponse<Venue>> addVenue(@Valid @RequestBody VenueRequest venueRequest) {
         return ResponseEntity.status(HttpStatus.CREATED).body(
                 ApiResponse.<Venue>builder()
                         .success(true)
@@ -48,7 +49,7 @@ public class VenueController {
     }
 
     @GetMapping("/{venue-id}")
-    public ResponseEntity<ApiResponse<Venue>> getVenueById(@Valid @PathVariable("venue-id") Integer id){
+    public ResponseEntity<ApiResponse<Venue>> getVenueById(@Valid @PathVariable("venue-id") Integer id) {
         return ResponseEntity.status(HttpStatus.OK).body(
                 ApiResponse.<Venue>builder()
                         .success(true)
@@ -60,14 +61,13 @@ public class VenueController {
         );
     }
 
-
     @PutMapping("/{venue-id}")
-    public ResponseEntity<ApiResponse<Venue>> updateVenueById(@Valid @PathVariable("venue-id") Integer id,@Valid @RequestBody VenueRequest venueRequest){
+    public ResponseEntity<ApiResponse<Venue>> updateVenueById(@Valid @PathVariable("venue-id") Integer id, @Valid @RequestBody VenueRequest venueRequest) {
         return ResponseEntity.status(HttpStatus.OK).body(
                 ApiResponse.<Venue>builder()
                         .success(true)
                         .message("Update Venue by id successfully")
-                        .payload(venueService.updateVenueById(id,venueRequest))
+                        .payload(venueService.updateVenueById(id, venueRequest))
                         .status(HttpStatus.FOUND)
                         .timestamp(LocalDateTime.now())
                         .build()
@@ -75,7 +75,7 @@ public class VenueController {
     }
 
     @DeleteMapping("/{venue-id}")
-    public ResponseEntity<ApiResponse<Venue>> deleteVenueById(@Valid @PathVariable("venue-id") Integer id){
+    public ResponseEntity<ApiResponse<Venue>> deleteVenueById(@Valid @PathVariable("venue-id") Integer id) {
         return ResponseEntity.status(HttpStatus.OK).body(
                 ApiResponse.<Venue>builder()
                         .success(true)

@@ -4,8 +4,6 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.BadRequestException;
-import org.example.homeowork003.exception.NotFoundException;
 import org.example.homeowork003.model.dto.Event;
 import org.example.homeowork003.model.dto.request.EventRequest;
 import org.example.homeowork003.model.dto.respone.ApiResponse;

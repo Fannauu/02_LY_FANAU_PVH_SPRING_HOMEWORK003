@@ -23,12 +23,12 @@ public class AttendeeController {
     private final AttendeeService attendeeService;
 
     @GetMapping
-    public ResponseEntity<ApiResponse<List<Attendee>>> getAllAttendees(@Positive @NotNull @RequestParam(required = false)Integer size, @Positive @NotNull @RequestParam(required = false)Integer page) {
+    public ResponseEntity<ApiResponse<List<Attendee>>> getAllAttendees(@Positive @NotNull @RequestParam(required = false) Integer size, @Positive @NotNull @RequestParam(required = false) Integer page) {
         return ResponseEntity.status(HttpStatus.OK).body(
                 ApiResponse.<List<Attendee>>builder()
                         .success(true)
                         .message("Get all attendees successfully")
-                        .payload(attendeeService.getAllAttendees(size,page))
+                        .payload(attendeeService.getAllAttendees(size, page))
                         .status(HttpStatus.OK)
                         .timestamp(LocalDateTime.now())
                         .build()
@@ -36,7 +36,7 @@ public class AttendeeController {
     }
 
     @PostMapping
-    public ResponseEntity<ApiResponse<Attendee>> addAttendee(@Valid @RequestBody AttendeeRequest attendeeRequest){
+    public ResponseEntity<ApiResponse<Attendee>> addAttendee(@Valid @RequestBody AttendeeRequest attendeeRequest) {
         return ResponseEntity.status(HttpStatus.CREATED).body(
                 ApiResponse.<Attendee>builder()
                         .success(true)
@@ -49,12 +49,12 @@ public class AttendeeController {
     }
 
     @PutMapping("/{attendee-id}")
-    public ResponseEntity<ApiResponse<Attendee>> updateAttendeeById(@Valid @PathVariable("attendee-id")Integer id, @Valid @RequestBody AttendeeRequest attendeeRequest){
+    public ResponseEntity<ApiResponse<Attendee>> updateAttendeeById(@Valid @PathVariable("attendee-id") Integer id, @Valid @RequestBody AttendeeRequest attendeeRequest) {
         return ResponseEntity.status(HttpStatus.OK).body(
                 ApiResponse.<Attendee>builder()
                         .success(true)
                         .message("Update attendee successfully")
-                        .payload(attendeeService.updateAttendeeById(id,attendeeRequest))
+                        .payload(attendeeService.updateAttendeeById(id, attendeeRequest))
                         .status(HttpStatus.OK)
                         .timestamp(LocalDateTime.now())
                         .build()
@@ -62,7 +62,7 @@ public class AttendeeController {
     }
 
     @GetMapping("/{attendee-id}")
-    public ResponseEntity<ApiResponse<Attendee>> getAttendeeById(@Valid @PathVariable("attendee-id")Integer id){
+    public ResponseEntity<ApiResponse<Attendee>> getAttendeeById(@Valid @PathVariable("attendee-id") Integer id) {
         return ResponseEntity.status(HttpStatus.OK).body(
                 ApiResponse.<Attendee>builder()
                         .success(true)
@@ -76,15 +76,18 @@ public class AttendeeController {
 
 
     @DeleteMapping("/{attendee-id}")
-    public ResponseEntity<ApiResponse<Attendee>> deleteAttendeeById(@Valid @PathVariable("attendee-id")Integer id){
+    public ResponseEntity<ApiResponse<Attendee>> deleteAttendeeById(@Valid @PathVariable("attendee-id") Integer id) {
 
-        ApiResponse response = ApiResponse.<Attendee>builder()
-                .success(true)
-                .message("Delete attendee successfully")
-                .payload(attendeeService.deleteAttendeeById(id))
-                .status(HttpStatus.OK)
-                .timestamp(LocalDateTime.now())
-                .build();
-        return ResponseEntity.status(HttpStatus.OK).body(response);
+
+        return ResponseEntity.status(HttpStatus.OK).body(
+                ApiResponse.<Attendee>builder()
+                        .success(true)
+                        .message("Delete attendee successfully")
+                        .payload(attendeeService.deleteAttendeeById(id))
+                        .status(HttpStatus.OK)
+                        .timestamp(LocalDateTime.now())
+                        .build()
+        );
+
     }
 }

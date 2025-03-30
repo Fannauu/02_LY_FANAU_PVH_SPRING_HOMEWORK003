@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AttendeeRequest {
     @NotBlank(message = "Attendee name can't be blank")
-    @Size(min = 3,max = 10,message = "Characters should be greater than 3 !!!")
+    @Size(min = 3, max = 10, message = "Characters should be greater than 3 !!!")
     private String attendeeName;
     @NotBlank(message = "Email can't be blank")
     @Email(message = "Email should be valid")

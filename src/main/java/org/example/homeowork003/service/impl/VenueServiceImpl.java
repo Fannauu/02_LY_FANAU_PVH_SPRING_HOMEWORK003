@@ -1,6 +1,5 @@
 package org.example.homeowork003.service.impl;
 
-import org.apache.ibatis.annotations.Select;
 import org.example.homeowork003.exception.NotFoundException;
 import org.example.homeowork003.model.dto.Venue;
 import org.example.homeowork003.model.dto.request.VenueRequest;
@@ -19,8 +18,8 @@ public class VenueServiceImpl implements VenueService {
     }
 
     @Override
-    public List<Venue> getAllVenues(Integer size ,Integer page) {
-        return venueRepository.getAllVenues(size,page);
+    public List<Venue> getAllVenues(Integer size, Integer page) {
+        return venueRepository.getAllVenues(size, page);
     }
 
     @Override
@@ -31,7 +30,7 @@ public class VenueServiceImpl implements VenueService {
     @Override
     public Venue getVenueById(Integer id) {
         Venue venue = venueRepository.getVenueById(id);
-        if(venue == null) {
+        if (venue == null) {
             throw new NotFoundException("Venue id " + id + " not found");
         }
         return venue;
@@ -41,7 +40,7 @@ public class VenueServiceImpl implements VenueService {
     @Override
     public Venue updateVenueById(Integer id, VenueRequest venueRequest) {
         Venue venue = venueRepository.updateVenueById(id, venueRequest);
-        if(venue == null) {
+        if (venue == null) {
             throw new NotFoundException("Venue id " + id + " not found can't be updated");
         }
         return venue;
@@ -50,12 +49,10 @@ public class VenueServiceImpl implements VenueService {
     @Override
     public Venue deleteVenueById(Integer id) {
         Venue venue = venueRepository.deleteVenueById(id);
-        if(venue == null) {
+        if (venue == null) {
             throw new NotFoundException("Venue id " + id + " not found can't be deleted");
         }
         return venueRepository.deleteVenueById(id);
     }
-
-
 
 }

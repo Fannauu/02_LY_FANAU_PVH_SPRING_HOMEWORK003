@@ -2,7 +2,6 @@ package org.example.homeowork003.service;
 
 import org.example.homeowork003.model.dto.Venue;
 import org.example.homeowork003.model.dto.request.VenueRequest;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 

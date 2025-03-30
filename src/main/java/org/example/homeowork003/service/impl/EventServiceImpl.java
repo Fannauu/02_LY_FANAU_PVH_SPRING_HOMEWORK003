@@ -27,7 +27,7 @@ public class EventServiceImpl implements EventService {
     @Override
     public Event addEvent(EventRequest eventRequest) {
         Integer venueId = eventRequest.getVenueId();
-        if(venueId == null || venueRepository.getVenueById(venueId) == null) {
+        if (venueId == null || venueRepository.getVenueById(venueId) == null) {
             throw new NotFoundException("Venue id " + venueId + " not found");
         }
 

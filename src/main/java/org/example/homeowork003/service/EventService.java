@@ -7,13 +7,13 @@ import org.example.homeowork003.model.dto.request.EventRequest;
 import java.util.List;
 
 public interface EventService {
-    List<Event> getAllEvents(Integer size,Integer page);
+    List<Event> getAllEvents(Integer size, Integer page);
 
     Event addEvent(EventRequest eventRequest);
 
     Event getEventById(Integer id);
 
-    Event updateEventId( Integer id, EventRequest eventRequest);
+    Event updateEventId(Integer id, EventRequest eventRequest);
 
     Event deleteEventById(Integer id);
 }

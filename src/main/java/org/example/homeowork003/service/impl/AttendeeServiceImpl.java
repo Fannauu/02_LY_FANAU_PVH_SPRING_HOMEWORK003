@@ -14,9 +14,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AttendeeServiceImpl implements AttendeeService {
     private final AttendeeRepository attendeeRepository;
+
     @Override
     public List<Attendee> getAllAttendees(Integer size, Integer page) {
-        return attendeeRepository.getAllAttendees(size,page);
+        return attendeeRepository.getAllAttendees(size, page);
     }
 
     @Override
@@ -27,7 +28,7 @@ public class AttendeeServiceImpl implements AttendeeService {
     @Override
     public Attendee getAttendeeById(Integer id) {
         Attendee attendee = attendeeRepository.getAttendeeById(id);
-        if(attendee == null){
+        if (attendee == null) {
             throw new NotFoundException("Attendee id " + id + " not found");
         }
         return attendee;
@@ -36,7 +37,7 @@ public class AttendeeServiceImpl implements AttendeeService {
     @Override
     public Attendee updateAttendeeById(Integer id, AttendeeRequest attendeeRequest) {
         Attendee attendee = attendeeRepository.updateAttendeeById(id, attendeeRequest);
-        if(attendee == null){
+        if (attendee == null) {
             throw new NotFoundException("Attendee id " + id + " not found");
         }
         return attendee;
@@ -45,7 +46,7 @@ public class AttendeeServiceImpl implements AttendeeService {
     @Override
     public Attendee deleteAttendeeById(Integer id) {
         Attendee attendee = attendeeRepository.deleteAttendeeById(id);
-        if(attendee == null){
+        if (attendee == null) {
             throw new NotFoundException("Attendee id" + id + " not found");
         }
         return attendee;
