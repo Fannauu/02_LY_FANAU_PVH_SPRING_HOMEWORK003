@@ -12,48 +12,54 @@ public interface AttendeeRepository {
 
 
     @Select("""
-        SELECT * FROM attendees
-    """)
-    @Results(id="attendeeMapper", value = {
-            @Result(property = "attendeeId",column = "attendee_id"),
-            @Result(property = "attendeeName",column = "attendee_name"),
+                SELECT * FROM attendees
+            """)
+    @Results(id = "attendeeMapper", value = {
+            @Result(property = "attendeeId", column = "attendee_id"),
+            @Result(property = "attendeeName", column = "attendee_name"),
     })
     List<Attendee> getAllAttendees(Integer size, Integer page);
 
 
-
     @Select("""
-        INSERT INTO attendees (attendee_name, email)
-        VALUES (#{request.attendeeName},#{request.email})
-        RETURNING *
-    """)
+                INSERT INTO attendees (attendee_name, email)
+                VALUES (#{request.attendeeName},#{request.email})
+                RETURNING *
+            """)
     @ResultMap("attendeeMapper")
     Attendee addAttendee(@Param("request") AttendeeRequest attendeeRequest);
 
 
-
     @Select("""
-        UPDATE attendees set attendee_name = #{request.attendeeName}, email = #{request.email}
-        WHERE attendee_id = #{id}
-        RETURNING *
-    """)
+                UPDATE attendees set attendee_name = #{request.attendeeName}, email = #{request.email}
+                WHERE attendee_id = #{id}
+                RETURNING *
+            """)
     @ResultMap("attendeeMapper")
     Attendee updateAttendeeById(Integer id, @Param("request") AttendeeRequest attendeeRequest);
 
 
-
     @Select("""
-        SELECT * FROM attendees WHERE  attendee_id = #{id}
-    """)
+                SELECT * FROM attendees WHERE  attendee_id = #{id}
+            """)
     @ResultMap("attendeeMapper")
     Attendee getAttendeeById(Integer id);
 
 
-
     @Select(""" 
-        DELETE from attendees WHERE attendee_id = #{id}
-        RETURNING *
-    """)
+                DELETE from attendees WHERE attendee_id = #{id}
+                RETURNING *
+            """)
     @ResultMap("attendeeMapper")
     Attendee deleteAttendeeById(Integer id);
+
+
+    @Select("""
+              SELECT a.* FROM attendees a
+              INNER JOIN event_attendee ev ON a.attendee_id = ev.attendee_id
+              WHERE ev.event_id = #{id}
+            """)
+    @ResultMap("attendeeMapper")
+    List<Attendee> getAttendeesByEventId(Integer id);
+
 }

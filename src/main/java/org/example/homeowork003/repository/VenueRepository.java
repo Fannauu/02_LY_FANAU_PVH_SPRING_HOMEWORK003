@@ -56,11 +56,11 @@ public interface VenueRepository {
 
 
 
-    @Select("""
-        SELECT e.event_id, e.event_name, e.event_date FROM events e
-        INNER JOIN event_attendee ea ON e.event_id = ea.event_id
-        WHERE e.venue_id = #{id}
-    """)
-    @ResultMap("venueMapper")
-    public void getEventByVenueId(Integer id);
+//    @Select("""
+//        SELECT e.event_id, e.event_name, e.event_date FROM events e
+//        INNER JOIN event_attendee ea ON e.event_id = ea.event_id
+//        WHERE e.venue_id = #{id}
+//    """)
+//    @ResultMap("venueMapper")
+//    public void getEventByVenueId(Integer id);
 }

@@ -1,5 +1,6 @@
 package org.example.homeowork003.service.impl;
 
+import org.apache.ibatis.annotations.Select;
 import org.example.homeowork003.exception.NotFoundException;
 import org.example.homeowork003.model.dto.Venue;
 import org.example.homeowork003.model.dto.request.VenueRequest;
@@ -56,11 +57,5 @@ public class VenueServiceImpl implements VenueService {
     }
 
 
-//    @Select("""
-//        SELECT e.event_id, e.event_name, e.event_date FROM events e
-//        INNER JOIN event_attendee et ON e.event_id = et.event_id
-//        WHERE venue_id = 1;
-//    """)
-//
-//    void getEventByVenueId(Integer venueId) {}
+
 }
