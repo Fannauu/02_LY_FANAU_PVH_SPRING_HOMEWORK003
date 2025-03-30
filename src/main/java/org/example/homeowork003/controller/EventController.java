@@ -1,8 +1,11 @@
 package org.example.homeowork003.controller;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.BadRequestException;
+import org.example.homeowork003.exception.NotFoundException;
 import org.example.homeowork003.model.dto.Event;
 import org.example.homeowork003.model.dto.request.EventRequest;
 import org.example.homeowork003.model.dto.respone.ApiResponse;
@@ -22,7 +25,7 @@ public class EventController {
     private final EventService eventService;
 
     @GetMapping
-    public ResponseEntity<ApiResponse<List<Event>>> getAllEvents(@Positive @RequestParam(required = false) Integer size,@Positive @RequestParam(required = false) Integer page){
+    public ResponseEntity<ApiResponse<List<Event>>> getAllEvents(@Positive @NotNull @RequestParam(required = false) Integer size,@Positive @NotNull @RequestParam(required = false) Integer page){
         return ResponseEntity.status(HttpStatus.OK).body(
                 ApiResponse.<List<Event>>builder()
                         .success(true)

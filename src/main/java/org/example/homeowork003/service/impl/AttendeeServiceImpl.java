@@ -28,7 +28,7 @@ public class AttendeeServiceImpl implements AttendeeService {
     public Attendee getAttendeeById(Integer id) {
         Attendee attendee = attendeeRepository.getAttendeeById(id);
         if(attendee == null){
-            throw new NotFoundException("Attendee id" + id + " not found");
+            throw new NotFoundException("Attendee id " + id + " not found");
         }
         return attendee;
     }

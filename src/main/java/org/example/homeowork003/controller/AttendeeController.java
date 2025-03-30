@@ -2,6 +2,7 @@ package org.example.homeowork003.controller;
 
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
 import org.example.homeowork003.model.dto.Attendee;
@@ -22,7 +23,7 @@ public class AttendeeController {
     private final AttendeeService attendeeService;
 
     @GetMapping
-    public ResponseEntity<ApiResponse<List<Attendee>>> getAllAttendees(@Positive @RequestParam(required = false)Integer size,@Positive @RequestParam(required = false)Integer page) {
+    public ResponseEntity<ApiResponse<List<Attendee>>> getAllAttendees(@Positive @NotNull @RequestParam(required = false)Integer size, @Positive @NotNull @RequestParam(required = false)Integer page) {
         return ResponseEntity.status(HttpStatus.OK).body(
                 ApiResponse.<List<Attendee>>builder()
                         .success(true)

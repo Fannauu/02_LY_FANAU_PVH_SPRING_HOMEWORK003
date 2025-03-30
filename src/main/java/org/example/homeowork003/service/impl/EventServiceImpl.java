@@ -26,10 +26,24 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public Event addEvent(EventRequest eventRequest) {
+        Integer venueId = eventRequest.getVenueId();
+        if(venueId == null || venueRepository.getVenueById(venueId) == null) {
+            throw new NotFoundException("Venue id " + venueId + " not found");
+        }
+
+        List<Integer> attendeeIds = eventRequest.getAttendeeId();
+        for (Integer attendeeId : attendeeIds) {
+            if (attendeeId == null || attendeeRepository.getAttendeeById(attendeeId) == null) {
+                throw new NotFoundException("Attendee id " + attendeeId + " not found");
+            }
+        }
+
         Event event = eventRepository.addEvent(eventRequest);
-        for (Integer attendeeId : eventRequest.getAttendeeId()) {
+
+        for (Integer attendeeId : attendeeIds) {
             eventRepository.addEventAndAttendeeToMiddleOfTable(event.getEventId(), attendeeId);
         }
+
         return getEventById(event.getEventId());
     }
 
@@ -54,13 +68,17 @@ public class EventServiceImpl implements EventService {
         }
 
 
+        List<Integer> attendeeIds = eventRequest.getAttendeeId();
+        for (Integer attendeeId : attendeeIds) {
+            if (attendeeId == null || attendeeRepository.getAttendeeById(attendeeId) == null) {
+                throw new NotFoundException("Attendee " + attendeeId + " not found");
+            }
+        }
+
         eventRepository.deleteEventById(id);
         eventRepository.updateEventId(id, eventRequest);
 
-        for (Integer attendeeId : eventRequest.getAttendeeId()) {
-            if (attendeeId == null || attendeeRepository.getAttendeeById(attendeeId) == null) {
-                throw new NotFoundException("Attendee id " + attendeeId + " not found");
-            }
+        for (Integer attendeeId : attendeeIds) {
             eventRepository.addEventAndAttendeeToMiddleOfTable(id, attendeeId);
         }
         return getEventById(event.getEventId());

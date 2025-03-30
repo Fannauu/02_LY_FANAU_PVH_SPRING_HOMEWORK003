@@ -1,6 +1,7 @@
 package org.example.homeowork003.controller;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
 import org.example.homeowork003.model.dto.Venue;
@@ -21,7 +22,7 @@ public class VenueController {
 
 
     @GetMapping
-    public ResponseEntity<ApiResponse<List<Venue>>> getAllVenues(@Valid @RequestParam(required = false) @Positive Integer size, @Positive @RequestParam(required = false)Integer page ){
+    public ResponseEntity<ApiResponse<List<Venue>>> getAllVenues(@Positive @NotNull @RequestParam(required = false) Integer size, @Positive @NotNull @RequestParam(required = false)Integer page ){
         return ResponseEntity.status(HttpStatus.OK).body(
                 ApiResponse.<List<Venue>>builder()
                         .success(true)
